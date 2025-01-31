@@ -14,7 +14,7 @@
 
 ### Association
 - has_many :items
-- has_many :record
+- has_many :records
 
 
 
@@ -27,7 +27,7 @@
 | condition_id         | integer | null: false |
 | shipping_cost_burden_id | integer | null: false |
 | prefecture_id     | integer | null: false |
-| shipping_days_id  | integer | null: false |
+| shipping_day_id  | integer | null: false |
 | price             | integer | null: false |
 | user              | references | null: false, foreign_key: true |
 
@@ -50,16 +50,17 @@
 - has_one :information
 
 
-## informationテーブル
+## informationsテーブル
 
  Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
-| postal_code       | string | null: false, foreign_key: true |
-| prefecture_id     | integer | null: false, foreign_key: true |
-| city              | text   | null: false, foreign_key: true |
-| street            | string | null: false, foreign_key: true |
-| building          | string | null: true, foreign_key: true |
-| phone_number      | string | null: false, foreign_key: true |
+| postal_code       | string | null: false |
+| prefecture_id     | integer | null: false |
+| city              | string | null: false |
+| street            | string | null: false |
+| building          | string |              |
+| phone_number      | string | null: false |
+| record             | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :record
