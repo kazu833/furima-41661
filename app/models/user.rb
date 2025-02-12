@@ -12,11 +12,12 @@ class User < ApplicationRecord
   private
 
   def validate_password
-    if password.present? && password_confirmation.present? && (errors[:password].blank? && errors[:password_confirmation].blank?)
-      unless password =~ /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i
-        errors.add(:password, 'には英字と数字の両方を含めて設定してください')
-      end
+    unless password.present? && password_confirmation.present? && (errors[:password].blank? && errors[:password_confirmation].blank?)
+      return
     end
+    return if password =~ /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i
+
+    errors.add(:password, 'には英字と数字の両方を含めて設定してください')
   end
 
   def validate_names
