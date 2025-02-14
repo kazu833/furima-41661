@@ -9,5 +9,4 @@ class User < ApplicationRecord
   validates :last_name_kana, presence: true, format: { with: /\A[ァ-ヶー]+\z/, message: 'は全角(カタカナ)で入力してください' }
   validates :birthday, presence: true
   validates :nickname, presence: true
-
 end
