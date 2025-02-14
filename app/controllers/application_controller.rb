@@ -1,16 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :basic_auth
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :authenticate_user!, except: [:index]
-
-  def create
-    @user = User.new(user_params)
-    if @user.save
-      redirect_to root_path
-    else
-      render :new
-    end
-  end
 
   private
 
