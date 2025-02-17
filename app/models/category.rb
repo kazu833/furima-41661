@@ -1,4 +1,4 @@
-class Category < ActiveHash::
+class Category < ActiveHash::Base
   self.data = [
    { id: 1, name: '---' },
    { id: 2, name: 'レディース' },
@@ -15,6 +15,6 @@ class Category < ActiveHash::
 
  include ActiveHash::Associations
   has_many :articles
-  validates :category_id, numericality: { other_than: 1 , message: "can't be blank"}
+
 
 end

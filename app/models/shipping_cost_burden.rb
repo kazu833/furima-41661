@@ -1,4 +1,4 @@
-class Shipping_cost_burden < ActiveHash::
+class ShippingCostBurden < ActiveHash::Base
   self.data = [
     { id: 1, name: '---' },
     { id: 2, name: '着払い（購入者負担）' },
@@ -7,6 +7,5 @@ class Shipping_cost_burden < ActiveHash::
 
   include ActiveHash::Associations
   has_many :articles
-  validates :shipping_cost_burden_id, numericality: { other_than: 1 , message: "can't be blank"}
 
 end
