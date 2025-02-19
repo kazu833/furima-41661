@@ -3,14 +3,15 @@ class Item < ApplicationRecord
   has_one_attached :image
   extend ActiveHash::Associations::ActiveRecordExtensions
 
-  validates :item_name, null: false
-  validates :description, null: false
-  validates :category_id, null: false
-  validates :condition_id, null: false
-  validates :shipping_cost_burden_id, null: false
-  validates :prefecture_id, null: false
-  validates :shipping_day_id, null: false
-  validates :price, null: false
-  validates :user, null: false, foreign_key: true
-  
+  validates :item_name, presence: true, length: { maximum: 40 }
+  validates :description, presence: true, length: { maximum: 1000 }
+  validates :category_id, presence: true
+  validates :condition_id, presence: true
+  validates :shipping_cost_burden_id, presence: true
+  validates :prefecture_id, presence: true
+  validates :shipping_day_id, presence: true
+  validates :price, presence: true
+  validates :user, presence: true
+  validates :image, presence: true
+
 end
