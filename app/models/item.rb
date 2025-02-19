@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   validates :shipping_cost_burden_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
   validates :prefecture_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
   validates :shipping_day_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :price, presence: true
+  validates :price, presence: true, format: { with: /\A\d+\z/, message: "半角数字のみを入力してください" },numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
   validates :user, presence: true
   validates :image, presence: true
 
