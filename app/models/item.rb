@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_day
 
   belongs_to :user
+  has_one :record
   has_one_attached :image
 
   validates :item_name, presence: true, length: { maximum: 40 }
