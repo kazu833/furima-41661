@@ -1,7 +1,13 @@
 class Item < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :category
+  belongs_to_active_hash :condition
+  belongs_to_active_hash :shipping_cost_burden
+  belongs_to_active_hash :prefecture
+  belongs_to_active_hash :shipping_day
+
   belongs_to :user
   has_one_attached :image
-  extend ActiveHash::Associations::ActiveRecordExtensions
 
   validates :item_name, presence: true, length: { maximum: 40 }
   validates :description, presence: true, length: { maximum: 1000 }
