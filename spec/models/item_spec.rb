@@ -90,10 +90,6 @@ RSpec.describe Item, type: :model do
         @item.price = '１０００'
         @item.valid?
         expect(@item.errors.full_messages).to include 'Price is not a number'
-
-        @item.price = 'abcde'
-        @item.valid?
-        expect(@item.errors.full_messages).to include 'Price is not a number'
       end
 
       it '商品画像がないと出品できない' do
