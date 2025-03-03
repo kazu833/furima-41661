@@ -67,13 +67,13 @@ describe '購入情報の保存' do
     it 'userが紐付いていないと保存できない' do
       @record_information.user_id = nil
       @record_information.valid?
-      expect(@record_information.errors.full_messages).to include "User can't be blank"
+      expect(@record_information.errors.full_messages).to include "User must exist"
     end
 
     it 'itemが紐付いていないと保存できない' do
       @record_information.item_id = nil
       @record_information.valid?
-      expect(@record_information.errors.full_messages).to include "Item can't be blank"
+      expect(@record_information.errors.full_messages).to include "Item must exist"
     end
 
   end
