@@ -1,6 +1,7 @@
 class RecordsController < ApplicationController
   before_action :authenticate_user!, except: :index
   before_action :set_item, only: [:index, :create]
+  before_action :redirect_if_sold, only: [:index, :create]
 
   def index
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
@@ -39,5 +40,11 @@ class RecordsController < ApplicationController
       card: record_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def redirect_if_sold
+    return unless @item.record.present?
+
+    redirect_to root_path
   end
 end
