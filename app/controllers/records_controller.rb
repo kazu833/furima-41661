@@ -43,7 +43,7 @@ class RecordsController < ApplicationController
   end
 
   def redirect_if_sold
-    return unless @item.record.present?
+    return unless @item.record.present? || @item.user == current_user
 
     redirect_to root_path
   end
