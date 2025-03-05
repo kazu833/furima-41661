@@ -10,8 +10,6 @@ class RecordsController < ApplicationController
 
   def create
     @record_information = RecordInformation.new(record_params)
-    @record_information.user_id = current_user.id
-    @record_information.item_id = params[:item_id]
     if @record_information.valid?
       pay_item
       @record_information.save
@@ -30,7 +28,7 @@ class RecordsController < ApplicationController
 
   def record_params
     params.require(:record_information).permit(:postal_code, :prefecture_id, :city, :street, :building,
-                                               :phone_number).merge(token: params[:token])
+                                               :phone_number).merge(token: params[:token], user_id = current_user.id, item_id = params[:item_id])
   end
 
   def pay_item
@@ -43,8 +41,8 @@ class RecordsController < ApplicationController
   end
 
   def redirect_if_sold
-    return unless @item.record.present? || @item.user == current_user
-
-    redirect_to root_path
+    if @item.record.present? || @item.user == current_user
+      redirect_to root_path
+    end
   end
 end

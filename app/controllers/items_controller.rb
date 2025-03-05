@@ -52,14 +52,14 @@ class ItemsController < ApplicationController
   end
 
   def redirect_if_not_seller
-    return unless current_user != @item.user
-
-    redirect_to root_path
+    if current_user != @item.user
+      redirect_to root_path
+    end
   end
 
   def redirect_if_sold
-    return unless @item.record.present? && @item.user == current_user
-
-    redirect_to root_path
+    if @item.record.present? || @item.user == current_user
+      redirect_to root_path
+    end
   end
 end

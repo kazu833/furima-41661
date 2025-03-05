@@ -56,8 +56,20 @@ RSpec.describe RecordInformation, type: :model do
         expect(@record_information.errors.full_messages).to include "Phone number can't be blank"
       end
 
-      it 'phone_numberは、10桁以上11桁以内の半角数値のみでないと保存できない' do
-        @record_information.phone_number = '1234567891000'
+      it 'phone_numberが半角数値以外では登録できない' do
+        @record_information.phone_number = '１２３４５６７８９'
+        @record_information.valid?
+        expect(@record_information.errors.full_messages).to include 'Phone number must be 10 or 11 digits long without any special characters'
+      end
+
+      it 'phone_numberが9桁以下では登録できない' do
+        @record_information.phone_number = '12345'
+        @record_information.valid?
+        expect(@record_information.errors.full_messages).to include 'Phone number must be 10 or 11 digits long without any special characters'
+      end
+
+      it 'phone_numberが12桁以上では登録できない' do
+        @record_information.phone_number = '123456789101112'
         @record_information.valid?
         expect(@record_information.errors.full_messages).to include 'Phone number must be 10 or 11 digits long without any special characters'
       end
