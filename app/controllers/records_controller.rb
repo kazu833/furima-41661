@@ -28,7 +28,7 @@ class RecordsController < ApplicationController
 
   def record_params
     params.require(:record_information).permit(:postal_code, :prefecture_id, :city, :street, :building,
-                                               :phone_number).merge(token: params[:token], user_id = current_user.id, item_id = params[:item_id])
+                                               :phone_number).merge(token: params[:token], user_id: current_user.id, item_id: params[:item_id])
   end
 
   def pay_item
@@ -41,7 +41,9 @@ class RecordsController < ApplicationController
   end
 
   def redirect_if_sold
-    if @item.record.present? || @item.user == current_user
+    if @item.record.present?
+      redirect_to root_path
+    elsif current_user == @item.user
       redirect_to root_path
     end
   end

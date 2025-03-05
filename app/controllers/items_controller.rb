@@ -58,7 +58,7 @@ class ItemsController < ApplicationController
   end
 
   def redirect_if_sold
-    if @item.record.present? || @item.user == current_user
+    if @item.record.present?
       redirect_to root_path
     end
   end
